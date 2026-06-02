@@ -57,6 +57,9 @@ type TableIndexConfig struct {
 	BloomFilterColumns                         []string                `json:"bloomFilterColumns,omitempty"`
 	JsonIndexColumns                           []string                `json:"jsonIndexColumns,omitempty"`
 	RangeIndexVersion                          int                     `json:"rangeIndexVersion,omitempty"`
+	SkipSegmentPreprocess                      *bool                   `json:"skipSegmentPreprocess,omitempty"`
+	OptimizeDictionaryType                     *bool                   `json:"optimizeDictionaryType,omitempty"`
+	ColumnMajorSegmentBuilderEnabled           *bool                   `json:"columnMajorSegmentBuilderEnabled,omitempty"`
 }
 
 type ColumnPartitionMapConfig struct {
@@ -229,18 +232,23 @@ type FilterConfig struct {
 }
 
 type TableIngestionConfig struct {
-	SegmentTimeValueCheck *bool                  `json:"segmentTimeValueCheck,omitempty"`
-	TransformConfigs      []TransformConfig      `json:"transformConfigs,omitempty"`
-	FilterConfig          *FilterConfig          `json:"filterConfig,omitempty"`
-	ContinueOnError       *bool                  `json:"continueOnError,omitempty"`
-	RowTimeValueCheck     bool                   `json:"rowTimeValueCheck,omitempty"`
-	StreamIngestionConfig *StreamIngestionConfig `json:"streamIngestionConfig,omitempty"`
+	SegmentTimeValueCheck                    *bool                  `json:"segmentTimeValueCheck,omitempty"`
+	TransformConfigs                         []TransformConfig      `json:"transformConfigs,omitempty"`
+	FilterConfig                             *FilterConfig          `json:"filterConfig,omitempty"`
+	ContinueOnError                          *bool                  `json:"continueOnError,omitempty"`
+	RowTimeValueCheck                        bool                   `json:"rowTimeValueCheck,omitempty"`
+	StreamIngestionConfig                    *StreamIngestionConfig `json:"streamIngestionConfig,omitempty"`
+	RetryOnSegmentBuildPrecheckFailure       *bool                  `json:"retryOnSegmentBuildPrecheckFailure,omitempty"`
 }
 
 type StreamIngestionConfig struct {
-	StreamConfigMaps                 []StreamConfig `json:"streamConfigMaps"`
-	ColumnMajorSegmentBuilderEnabled *bool          `json:"columnMajorSegmentBuilderEnabled,omitempty"`
-	TrackFilteredMessageOffsets      *bool          `json:"trackFilteredMessageOffsets,omitempty"`
+	StreamConfigMaps                               []StreamConfig `json:"streamConfigMaps"`
+	PauselessConsumptionEnabled                    *bool          `json:"pauselessConsumptionEnabled,omitempty"`
+	ColumnMajorSegmentBuilderEnabled               *bool          `json:"columnMajorSegmentBuilderEnabled,omitempty"`
+	TrackFilteredMessageOffsets                    *bool          `json:"trackFilteredMessageOffsets,omitempty"`
+	EnforceConsumptionInOrder                      *bool          `json:"enforceConsumptionInOrder,omitempty"`
+	UseIdealStateToCalculatePreviousSegment        *bool          `json:"useIdealStateToCalculatePreviousSegment,omitempty"`
+	DisasterRecoveryMode                           string         `json:"disasterRecoveryMode,omitempty"`
 }
 
 type StreamConfig struct {
