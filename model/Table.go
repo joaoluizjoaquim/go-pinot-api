@@ -258,6 +258,7 @@ type StreamConfig struct {
 	RealtimeSegmentFlushThresholdSegmentTime                         string `json:"realtime.segment.flush.threshold.segment.time,omitempty"`
 	RealtimeSegmentServerUploadToDeepStore                           string `json:"realtime.segment.serverUploadToDeepStore,omitempty"`
 	Region                                                           string `json:"region,omitempty"`
+	SaslClientCallbackHandlerClass                                   string `json:"sasl.client.callback.handler.class,omitempty"`
 	SaslJaasConfig                                                   string `json:"sasl.jaas.config,omitempty"`
 	SaslMechanism                                                    string `json:"sasl.mechanism,omitempty"`
 	SecretKey                                                        string `json:"secretKey,omitempty"`
